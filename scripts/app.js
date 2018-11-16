@@ -3,6 +3,30 @@ var weekly_quakes_endpoint = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/s
 
 $(document).ready(function() {
   console.log("Let's get coding!");
-  // CODE IN HERE!
+
+$.ajax({
+  method: "GET",
+  url: weekly_quakes_endpoint,
+  success: onSuccess,
+  error: onError, 
+
+})
+
+function onSuccess(response) {
+  //console.log(response);
+
+  var earthQuake = response.features;
+
+  earthQuake.forEach(function(features) {
+    //console.log(features);
+
+    var quakeTitle = `<p>${features.properties.title}</p>`;
+    $('#info').append(quakeTitle);
+  });
+}
+
+function onError(e1,e2,e3) {
+  console.log('there is an error', e2);
+}
 
 });
