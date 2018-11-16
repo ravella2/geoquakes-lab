@@ -4,6 +4,11 @@ var weekly_quakes_endpoint = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/s
 $(document).ready(function() {
   console.log("Let's get coding!");
 
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 37.78, lng: -122.44},
+    zoom: 8
+  });
+
 $.ajax({
   method: "GET",
   url: weekly_quakes_endpoint,
@@ -22,6 +27,11 @@ function onSuccess(response) {
 
     var quakeTitle = `<p>${features.properties.title}</p>`;
     $('#info').append(quakeTitle);
+  });
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 37.78, lng: -122.44},
+    zoom: 8
   });
 }
 
